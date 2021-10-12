@@ -14,8 +14,8 @@ namespace ByteBank.AgencySystem {
     static void Main(string[] args) {
       var accounts = new List<CheckingAccount>() {
         new CheckingAccount(123, 12458),
-        new CheckingAccount(325, 32165),
-        new CheckingAccount(658, 44679),
+        new CheckingAccount(325, 44679),
+        new CheckingAccount(658, 32165),
         new CheckingAccount(467, 72564),
         null,
         new CheckingAccount(712, 96465),
@@ -36,8 +36,12 @@ namespace ByteBank.AgencySystem {
       );*/
 
       var accountOrdered = accounts
+                            .Where(account => account != null)
+                            .OrderBy(account => account.Number);
+
+      /*var accountOrdered = accounts
         .Where(account => account != null)
-        .OrderBy(account => account.Number);
+        .OrderBy(account => account.Agency);*/
 
       foreach (var account in accountOrdered) {
         Console.WriteLine($"Account Number {account.Number}, Agency {account.Agency}.");
